@@ -39,7 +39,7 @@ class DBcreator:
         self.role_name = role_name
         self.password = password
 
-    def check_batabase(self):
+    def batabase_exists(self):
         db, sql = db_admin()
         dbs = []
         sql.execute("SELECT * FROM pg_catalog.pg_tables")
