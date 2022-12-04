@@ -39,6 +39,18 @@ class DBcreator:
         self.role_name = role_name
         self.password = password
 
+    def check_batabase(self):
+        db, sql = db_admin()
+        dbs = []
+        sql.execute("SELECT * FROM pg_catalog.pg_tables")
+        for i in sql.fetchall():
+            if i[0] not in dbs:
+                dbs.append(i[0])
+        db_close(db)
+        if self.role_name in dbs:
+            return True
+        else:
+            return False
     # 1
     def create_role(self):
         db, sql = db_admin()
