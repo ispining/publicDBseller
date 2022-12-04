@@ -86,14 +86,5 @@ class DBcreator:
 
         db_close(db)
 
-    def try_as_user(self):
-        db, sql = db_user(self.role_name, self.password)
-        result = []
-        sql.execute("SELECT * FROM pg_catalog.pg_tables")
-        for i in sql.fetchall():
-            if i[0] not in result:
-                result.append(i[0])
 
-        db_close(db)
-        return result
 
