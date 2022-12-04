@@ -1,5 +1,16 @@
 import psycopg2
+import iluxaMod as ilm
+
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+tg = ilm.tgBot("")
+bot = tg.bot
+bot.parse_mode = "HTML"
+
+send = tg.send
+back = tg.back
+kmarkup = tg.kmarkup
+btn = tg.btn
 
 
 def db_admin():
