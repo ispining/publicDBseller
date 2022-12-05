@@ -7,10 +7,7 @@ def start_msg(message):
     chat_id = message.chat.id
     if message.chat.type == "private":
         if Lang(chat_id).get() != "None":
-            k = kmarkup()
-            msg = Texts(chat_id).get_text("start_msg")
-            k.row(btn(Texts(chat_id).get_text(""), callback_data=""))
-            send(chat_id, msg, reply_markup=k)
+            stg.start_msg(chat_id)
         else:
             stg.lang_set(chat_id)
 
@@ -37,10 +34,18 @@ def g_cals(call):
             pass
 
     if call.message.chat.type == "private":
+        cd = call.data.split("||")
         if call.data == "home":
             start_msg(call.message)
             dm()
+        elif call.data == "wallet":
+            stg.wallet(chat_id)
+            dm()
 
+        elif cd[0] == "set_lang":
+            Lang(chat_id).set(cd[1].lower())
+            start_msg(call.message)
+            dm()
 
 
 

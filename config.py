@@ -11,6 +11,9 @@ back = tg.back
 kmarkup = tg.kmarkup
 btn = tg.btn
 
+def back(chat_id, callback_data):
+    return tg.back(callback_data=callback_data, bname=Texts(chat_id).get_text("back_btn"))
+
 
 def preDB():
     sql.execute(f"""CREATE TABLE IF NOT EXISTS langs (
