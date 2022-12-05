@@ -1,6 +1,6 @@
 import psycopg2
 import iluxaMod as ilm
-
+import sources.texts as texts
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 tg = ilm.tgBot("")
