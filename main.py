@@ -6,9 +6,15 @@ import stg
 def start_msg(message):
     chat_id = message.chat.id
     if message.chat.type == "private":
-        k = kmarkup()
-        msg = texts.start_msg
-        k.row(btn("About us", callback_data=""))
+        if Lang(chat_id).get() != "None":
+            k = kmarkup()
+            msg = Texts(chat_id).get_text("start_msg")
+            k.row(btn(Texts(chat_id).get_text(""), callback_data=""))
+            send(chat_id, msg, reply_markup=k)
+        else:
+            stg.lang_set(chat_id)
+
+
 
 
 
@@ -23,8 +29,18 @@ def text_msgs(message):
 @bot.callback_query_handler(func=lambda m: True)
 def g_cals(call):
     chat_id = call.message.chat.id
+
+    def dm():
+        try:
+            bot.delete_message(chat_id, call.message.message_id)
+        except:
+            pass
+
     if call.message.chat.type == "private":
-        pass
+        if call.data == "home":
+            start_msg(call.message)
+            dm()
+
 
 
 

@@ -4,6 +4,8 @@ from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
 database = ilm.postgreSQL_connect(user="db_sale", password="armageddon", database="db_sale", host="illyashost.ddns.net")
 database.init_DB(stages=True, sub=True, settings=True, staff=True, balance=True, stdout=False)
+db = database.db
+sql = database.sql
 
 def db_admin():
     adb = psycopg2.connect(user="postgres", password="armageddon", host="illyashost.ddns.net", port=5432)

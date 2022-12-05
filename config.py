@@ -1,5 +1,5 @@
 from sources.db_actions.connectors import *
-import sources.texts as texts
+from sources.texts import Lang, Texts
 
 
 tg = ilm.tgBot("")
@@ -10,6 +10,14 @@ send = tg.send
 back = tg.back
 kmarkup = tg.kmarkup
 btn = tg.btn
+
+
+def preDB():
+    sql.execute(f"""CREATE TABLE IF NOT EXISTS langs (
+    user_id TEXT,
+    lang TEXT)""")
+    db.commit()
+
 
 
 class DBcreator:
