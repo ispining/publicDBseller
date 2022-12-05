@@ -7,6 +7,8 @@ def start_msg(message):
     chat_id = message.chat.id
     if message.chat.type == "private":
         k = kmarkup()
+        msg = texts.start_msg
+        k.row(btn("About us", callback_data=""))
 
 
 
