@@ -6,7 +6,8 @@ import stg
 def start_msg(message):
     chat_id = message.chat.id
     if message.chat.type == "private":
-        pass
+        k = kmarkup()
+
 
 
 @bot.message_handler(content_types=['text'])

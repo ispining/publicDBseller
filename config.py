@@ -3,6 +3,9 @@ import iluxaMod as ilm
 import sources.texts as texts
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
+database = ilm.postgreSQL_connect(user="db_sale", password="armageddon", database="db_sale", host="illyashost.ddns.net")
+database.init_DB(stages=True, sub=True, settings=True, staff=True, balance=True, stdout=False)
+
 tg = ilm.tgBot("")
 bot = tg.bot
 bot.parse_mode = "HTML"
@@ -12,13 +15,11 @@ back = tg.back
 kmarkup = tg.kmarkup
 btn = tg.btn
 
-
 def db_admin():
     db = psycopg2.connect(user="postgres", password="armageddon", host="illyashost.ddns.net", port=5432)
     db.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
     sql = db.cursor()
     return db, sql
-
 
 def db_user(username, password):
     db = psycopg2.connect(database=username, user=username, password=password, host="illyashost.ddns.net", port=5432)
@@ -26,13 +27,11 @@ def db_user(username, password):
     sql = db.cursor()
     return db, sql
 
-
 def db_close(db):
     try:
         db.close()
     except:
         pass
-
 
 class DBcreator:
     def __init__(self, role_name,password=None):
@@ -51,6 +50,7 @@ class DBcreator:
             return True
         else:
             return False
+
     # 1
     def create_role(self):
         db, sql = db_admin()
