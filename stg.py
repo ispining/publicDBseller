@@ -20,3 +20,12 @@ def wallet(chat_id):
     k.row(back(chat_id, "home"))
     send(chat_id, msg, reply_markup=k)
 
+def update_wallet(chat_id):
+    k = kmarkup()
+    msg = Texts(chat_id).get_text("update_wallet")
+    k.row(back(chat_id, "wallet"))
+    send(chat_id, msg, reply_markup=k)
+    database.stages(chat_id, "update_wallet")
+
+
+

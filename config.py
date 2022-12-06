@@ -7,9 +7,10 @@ bot = tg.bot
 bot.parse_mode = "HTML"
 
 send = tg.send
-back = tg.back
 kmarkup = tg.kmarkup
 btn = tg.btn
+
+admin_g = 0
 
 def back(chat_id, callback_data):
     return tg.back(callback_data=callback_data, bname=Texts(chat_id).get_text("back_btn"))
