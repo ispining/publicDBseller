@@ -12,9 +12,6 @@ def start_msg(message):
             stg.lang_set(chat_id)
 
 
-
-
-
 @bot.message_handler(content_types=['text'])
 def text_msgs(message):
     chat_id = message.chat.id
@@ -48,9 +45,6 @@ def text_msgs(message):
             database.stages(chat_id, "None")
 
 
-
-
-
 @bot.callback_query_handler(func=lambda m: True)
 def g_cals(call):
     chat_id = call.message.chat.id
@@ -68,13 +62,13 @@ def g_cals(call):
         if call.data == "home":
             start_msg(call.message)
             dm()
-        elif call.data == "wallet":
-            stg.wallet(chat_id)
-            dm()
-        elif call.data == "update_wallet":
-            stg.update_wallet(chat_id)
-            dm()
-
+        elif call.data in ["wallet", "update_wallet"]:
+            if call.data == "wallet":
+                stg.wallet(chat_id)
+                dm()
+            elif call.data == "update_wallet":
+                stg.update_wallet(chat_id)
+                dm()
         elif cd[0] == "set_lang":
             Lang(chat_id).set(cd[1].lower())
             start_msg(call.message)
@@ -83,22 +77,20 @@ def g_cals(call):
 
     else:
         if cd[0] in ['allow_wallet', 'deni_wallet']:
-
             if cd[0] == "allow_wallet":
                 user_id = int(cd[1])
                 count = int(cd[2])
 
-                database.balance(chat_id, int(database.balance(chat_id)) + count)
+                database.balance(user_id, int(database.balance(user_id)) + count)
 
                 send(chat_id, call.message.text + f"\n\n~ Confirmed by @{str(call.from_user.username)}")
                 dm()
 
 
                 k = kmarkup()
-                msg = Texts(chat_id).get_text("allow_wallet")
-                k.row(back(chat_id, "home"))
+                msg = Texts(user_id).get_text("allow_wallet")
+                k.row(back(user_id, "home"))
                 send(user_id, msg, reply_markup=k)
-
             elif cd[0] == "deni_wallet":
                 user_id = cd[1]
 
@@ -107,8 +99,8 @@ def g_cals(call):
                 dm()
 
                 k = kmarkup()
-                msg = Texts(chat_id).get_text("deni_wallet")
-                k.row(back(chat_id, "home"))
+                msg = Texts(user_id).get_text("deni_wallet")
+                k.row(back(user_id, "home"))
                 send(user_id, msg, reply_markup=k)
 
 

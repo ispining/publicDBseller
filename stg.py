@@ -10,6 +10,7 @@ def lang_set(chat_id):
 def start_msg(chat_id):
     k = kmarkup()
     msg = Texts(chat_id).get_text("start_msg")
+    k.row(btn(Texts(chat_id).get_text("take_db_btn"), callback_data="take_db"))
     k.row(btn(Texts(chat_id).get_text("wallet_btn"), callback_data="wallet"))
     send(chat_id, msg, reply_markup=k)
 

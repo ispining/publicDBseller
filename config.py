@@ -17,9 +17,29 @@ def back(chat_id, callback_data):
 
 
 def preDB():
-    sql.execute(f"""CREATE TABLE IF NOT EXISTS langs (
+    sql.execute(f"""CREATE TABLE IF NOT EXISTS langs(
     user_id TEXT,
     lang TEXT)""")
+    db.commit()
+    sql.execute(f"""CREATE TABLE IF NOT EXISTS global_dbs(
+    tarif_id TEXT,
+    ru_title TEXT,
+    en_title TEXT,
+    ru_info TEXT,
+    en_info TEXT,
+    connections TEXT,
+    days TEXT,
+    price TEXT)""")
+    db.commit()
+    sql.execute(f"""CREATE TABLE IF NOT EXISTS users_dbs(
+    row_id TEXT,
+    user_id TEXT,
+    db_id TEXT,
+    db_user TEXT,
+    db_password TEXT,
+    active TEXT,
+    reg_date TEXT,
+    active_date TEXT)""")
     db.commit()
 
 

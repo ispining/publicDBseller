@@ -62,7 +62,6 @@ texts_list = [
 <b>Ссылка:</b> {link}""",
         "en": ""
     },
-
     # allow_wallet
     {
         "text_id": "allow_wallet",
@@ -71,7 +70,6 @@ texts_list = [
 Ваш баланс был успешно пополнен""",
         "en": ""
     },
-
     # deni_wallet
     {
         "text_id": "deni_wallet",
@@ -83,7 +81,12 @@ texts_list = [
 
 
 
-
+    # take_db_btn
+    {
+        "text_id": "take_db_btn",
+        "ru": """Базы Данных""",
+        "en": ""
+    },
     # wallet_btn
     {
         "text_id": "wallet_btn",
